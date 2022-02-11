@@ -38,6 +38,15 @@ class App extends Component {
     
         this.setState({ counters: counters });
     }
+
+    handleDecrement =(counter) => {
+        const counters = [...this.state.counters]; //...spread operator to clone array
+        const index = counters.indexOf(counter); //finds index of counter
+        counters[index] = { ...counter }; // clones object
+        counters[index].value--; // increments counter
+        this.setState({ counters }) // updates states
+    }
+
     render() { 
         return (
 
@@ -49,7 +58,8 @@ class App extends Component {
         counters={this.state.counters}
         onReset={this.handleReset} 
         onIncrement={this.handleIncrement} 
-        onDelete={this.handleDelete}/> 
+        onDelete={this.handleDelete}
+        onDecrement={this.handleDecrement}/> 
      </main>
     
    </>
